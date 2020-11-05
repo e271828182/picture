@@ -12,7 +12,7 @@ https://sourceware.org/gdb/wiki/PermissionsDarwin
 
 2、一路确定，注意两点，证书类型：代码签名，储存位置：system
 
-3、点击证书，全部信任
+3、找到刚刚创建的证书，双击证书，全部信任
 
 (Mac OS X 10.14 and later) Create a `gdb-entitlement.xml` file containing the following:
 
