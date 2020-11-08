@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+    canal:
+        container_name: canal
+        image: star/canal:1.1.4
+        hostname: canal
+        ports:
+            - 2222:2222
+            - 11111:11111
+            - 8000:8000
+            - 11112:11112
+        volumes:
+            - ./conf:/usr/local/canal/conf
+            - ./bin/startup.sh:/usr/local/canal/bin/startup.sh
+        networks: 
+            - default-bridge
+        command: bin/startup.sh
+networks: 
+    default-bridge:
+        name: default-bridge
+        driver: bridge

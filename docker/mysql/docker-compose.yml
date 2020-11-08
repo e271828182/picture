@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+    mysql-8:
+        container_name: mysql
+        image: mysql:5.7.30
+        ports:
+            - 3306:3306
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+        volumes:
+            - ./data:/var/lib/mysql
+            - ./conf/mysql.cnf:/etc/mysql/conf.d/mysql.cnf
+        networks: 
+            - default-bridge
+networks: 
+    default-bridge:
+        name: default-bridge
+        driver: bridge

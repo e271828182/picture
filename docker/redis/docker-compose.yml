@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+    redis-5:
+        container_name: redis
+        image: redis:5.0.9
+        ports:
+            - 6379:6379
+        restart: always
+        volumes:
+            - ./conf/redis.conf:/usr/local/etc/redis/redis.conf
+            - ./data:/data
+        networks: 
+            - default-bridge
+        command: redis-server /usr/local/etc/redis/redis.conf
+networks: 
+    default-bridge:
+        name: default-bridge
+        driver: bridge

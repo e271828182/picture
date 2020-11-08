@@ -1,0 +1,28 @@
+#!/usr/bin/expect -f
+trap {
+ set rows [stty rows]
+ set cols [stty columns]
+ stty rows $rows columns $cols < $spawn_out(slave,name)
+} WINCH
+
+set timeout 30
+set environment [lindex $argv 0]
+set hostname    [lindex $argv 1]
+
+spawn ssh dwd-$environment
+expect {
+    "跳板机" {send "$hostname\n"}
+}
+expect {
+    "选择一个" {
+        send "ops\n"
+        exp_continue
+    }
+    "开始连接到 ops@$hostname" {
+        send "sudo su - airflow\n"
+        exp_continue
+    }
+    "airflow@$hostname" {
+        interact
+    }
+}

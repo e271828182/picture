@@ -1,0 +1,1 @@
+docker run --name mysql-8 --restart always -p 3306:3306 -v /Users/star/Develop/config/mysql/etc/mysql/conf.d:/etc/mysql/conf.d -v /Users/star/Develop/config/mysql/var/lib/mysql:/var/lib/mysql -v /Users/star/Develop/config/mysql/log:/var/log -e MYSQL_ROOT_PASSWORD=root -d mysql
